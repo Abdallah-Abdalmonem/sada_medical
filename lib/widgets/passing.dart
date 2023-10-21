@@ -1,20 +1,19 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'package:application/reusable_components/cache_helper.dart';
+
 import '../constants/constant/appcolor.dart';
 import '../constants/constant/image_constant.dart';
+import '../main.dart';
 import '../models/row_model.dart';
 import '../reusable_components/toast_helper.dart';
-import 'bodies/twenty_screen/twenty_screen.dart';
 import 'custom_widgets/custom_button.dart';
 import 'custom_widgets/custom_table_continer.dart';
 import 'custom_widgets/custom_table_row.dart';
 import 'custom_widgets/custom_text_form_field.dart';
-
-List<PatientData> patientDataList = [];
 
 class Passing extends StatefulWidget {
   const Passing({super.key});
@@ -80,6 +79,34 @@ class _PassingState extends State<Passing> {
     } else {
       print('No image selected.');
     }
+  }
+
+  clearData() async {
+    nameController.clear();
+    typeOfEchoController.clear();
+    _hematologyController1.clear();
+    _hematologyController2.clear();
+    _hematologyController3.clear();
+    _hematologyController4.clear();
+    _hematologyController5.clear();
+    _hematologyController6.clear();
+    _coagulationController1.clear();
+    _coagulationController2.clear();
+    _coagulationController3.clear();
+    _chemistryController1.clear();
+    _chemistryController2.clear();
+    _chemistryController3.clear();
+    _chemistryController4.clear();
+
+    selectedDate = null;
+    fileImage = null;
+  }
+
+  @override
+  void initState() {
+    CacheHelper.getList();
+    setState(() {});
+    super.initState();
   }
 
   @override
@@ -522,12 +549,12 @@ class _PassingState extends State<Passing> {
                           }
                           if (_formKey.currentState!.validate()) {
                             patientDataList.add(
-                              PatientData(
+                              PatientModel(
                                 name: nameController.text.toString(),
                                 date: selectedDate.toString(),
                                 typeOfEcho:
                                     typeOfEchoController.text.toString(),
-                                fileImage: fileImage,
+                                fileImage: fileImage?.path,
                                 hematologyModelList:
                                     reorderList(_hematologyModel),
                                 chemistryModelList:
@@ -536,26 +563,11 @@ class _PassingState extends State<Passing> {
                                     reorderList(_coagulationModel),
                               ),
                             );
-                            await clearData();
+
+                            //  await clearData();
+                            await CacheHelper.setList();
                             setState(() {});
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) => TwentyScreen(
-                            //       chemistryModelList:
-                            //           reorderList(_chemistryModel),
-                            //       coagulationModelList:
-                            //           reorderList(_coagulationModel),
-                            //       hematologyModelList:
-                            //           reorderList(_hematologyModel),
-                            //       date: selectedDate.toString(),
-                            //       fileImage: fileImage,
-                            //       typeOfEcho:
-                            //           typeOfEchoController.text.toString(),
-                            //       name: nameController.text.toString(),
-                            //     ),
-                            //   ),
-                            // );
+
                             ToastHelper.toastSuccess(msg: 'Success!');
                           }
                         },
@@ -580,48 +592,19 @@ class _PassingState extends State<Passing> {
       ),
     );
   }
-
-  clearData() async {
-    nameController.clear();
-    typeOfEchoController.clear();
-    _hematologyController1.clear();
-    _hematologyController2.clear();
-    _hematologyController3.clear();
-    _hematologyController4.clear();
-    _hematologyController5.clear();
-    _hematologyController6.clear();
-    _coagulationController1.clear();
-    _coagulationController2.clear();
-    _coagulationController3.clear();
-    _chemistryController1.clear();
-    _chemistryController2.clear();
-    _chemistryController3.clear();
-    _chemistryController4.clear();
-
-    selectedDate = null;
-    fileImage = null;
-
-    // for (var i = 0; i < _hematologyModel.length; i++) {
-    //   _hematologyModel[i].isSelected = false;
-    // }
-    // for (var i = 0; i < _chemistryModel.length; i++) {
-    //   _chemistryModel[i].isSelected = false;
-    // }
-    // for (var i = 0; i < _coagulationModel.length; i++) {
-    //   _coagulationModel[i].isSelected = false;
-    // }
-  }
 }
 
-class PatientData {
-  File? fileImage;
+class PatientModel {
+  // File? fileImage;
+  String? fileImage;
   String? name;
   String? date;
   String? typeOfEcho;
   List<CustomModel>? hematologyModelList;
   List<CustomModel>? coagulationModelList;
   List<CustomModel>? chemistryModelList;
-  PatientData({
+
+  PatientModel({
     this.fileImage,
     this.name,
     this.date,
@@ -630,6 +613,36 @@ class PatientData {
     this.coagulationModelList,
     this.chemistryModelList,
   });
+
+  factory PatientModel.fromMap(Map<String, dynamic> json) => PatientModel(
+        // fileImage: File(json["fileImage"]),
+        fileImage: json["fileImage"],
+        name: json["name"],
+        date: json["date"],
+        typeOfEcho: json["typeOfEcho"],
+        hematologyModelList: (json["hematologyModelList"] as List<dynamic>)
+            .map((item) => CustomModel.fromMap(item))
+            .toList(),
+        coagulationModelList: (json["coagulationModelList"] as List<dynamic>)
+            .map((item) => CustomModel.fromMap(item))
+            .toList(),
+        chemistryModelList: (json["chemistryModelList"] as List<dynamic>)
+            .map((item) => CustomModel.fromMap(item))
+            .toList(),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "name": name,
+        "date": date,
+        "typeOfEcho": typeOfEcho,
+        "fileImage": fileImage,
+        "hematologyModelList":
+            hematologyModelList?.map((item) => item.toMap()).toList(),
+        "coagulationModelList":
+            coagulationModelList?.map((item) => item.toMap()).toList(),
+        "chemistryModelList":
+            chemistryModelList?.map((item) => item.toMap()).toList(),
+      };
 }
 
 List<CustomModel> reorderList(List<CustomModel> list) {

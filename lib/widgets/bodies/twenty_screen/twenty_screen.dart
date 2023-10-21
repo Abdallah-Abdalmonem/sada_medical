@@ -6,11 +6,13 @@ import 'package:flutter/material.dart';
 import '../../../constants/constant/appcolor.dart';
 import '../../../constants/constant/image_constant.dart';
 import '../../../models/row_model.dart';
+import '../../../reusable_components/cache_helper.dart';
 import '../../custom_widgets/custom_table_continer.dart';
 import '../../custom_widgets/custom_table_row.dart';
 
-class TwentyScreen extends StatelessWidget {
-  File? fileImage;
+class TwentyScreen extends StatefulWidget {
+  // File? fileImage;
+  String? fileImage;
   String name;
   String date;
   String? typeOfEcho;
@@ -28,6 +30,18 @@ class TwentyScreen extends StatelessWidget {
     required this.coagulationModelList,
     required this.hematologyModelList,
   }) : super(key: key);
+
+  @override
+  State<TwentyScreen> createState() => _TwentyScreenState();
+}
+
+class _TwentyScreenState extends State<TwentyScreen> {
+  @override
+  void initState() {
+    CacheHelper.getList();
+    setState(() {});
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +81,7 @@ class TwentyScreen extends StatelessWidget {
                             const SizedBox(width: 10),
                             Expanded(
                               child: Text(
-                                name,
+                                widget.name,
                                 style: TextStyle(
                                     fontSize: 18, color: Colors.white),
                               ),
@@ -86,7 +100,7 @@ class TwentyScreen extends StatelessWidget {
                             const SizedBox(width: 10),
                             Expanded(
                               child: Text(
-                                date.substring(0, 10),
+                                widget.date.substring(0, 10),
                                 style: const TextStyle(
                                     fontSize: 18, color: Colors.white),
                               ),
@@ -108,45 +122,51 @@ class TwentyScreen extends StatelessWidget {
                         table: Column(
                           children: [
                             CustomTableRowForTwentyScreen(
-                              title: hematologyModelList[0].text,
-                              isEnable: hematologyModelList[0].isSelected,
-                              priority:
-                                  hematologyModelList[0].prority.toString(),
+                              title: widget.hematologyModelList[0].text,
+                              isEnable:
+                                  widget.hematologyModelList[0].isSelected,
+                              priority: widget.hematologyModelList[0].prority
+                                  .toString(),
                               context: context,
                             ),
                             CustomTableRowForTwentyScreen(
-                              title: hematologyModelList[1].text,
-                              isEnable: hematologyModelList[1].isSelected,
-                              priority:
-                                  hematologyModelList[1].prority.toString(),
+                              title: widget.hematologyModelList[1].text,
+                              isEnable:
+                                  widget.hematologyModelList[1].isSelected,
+                              priority: widget.hematologyModelList[1].prority
+                                  .toString(),
                               context: context,
                             ),
                             CustomTableRowForTwentyScreen(
-                              title: hematologyModelList[2].text,
-                              isEnable: hematologyModelList[2].isSelected,
-                              priority:
-                                  hematologyModelList[2].prority.toString(),
+                              title: widget.hematologyModelList[2].text,
+                              isEnable:
+                                  widget.hematologyModelList[2].isSelected,
+                              priority: widget.hematologyModelList[2].prority
+                                  .toString(),
                               context: context,
                             ),
                             CustomTableRowForTwentyScreen(
-                              title: hematologyModelList[3].text,
-                              isEnable: hematologyModelList[3].isSelected,
-                              priority:
-                                  hematologyModelList[3].prority.toString(),
+                              title: widget.hematologyModelList[3].text,
+                              isEnable:
+                                  widget.hematologyModelList[3].isSelected,
+                              priority: widget.hematologyModelList[3].prority
+                                  .toString(),
                               context: context,
                             ),
                             CustomTableRowForTwentyScreen(
-                              title: hematologyModelList[4].text,
-                              isEnable: hematologyModelList[4].isSelected,
-                              priority:
-                                  hematologyModelList[4].prority.toString(),
+                              title: widget.hematologyModelList[4].text,
+                              isEnable:
+                                  widget.hematologyModelList[4].isSelected,
+                              priority: widget.hematologyModelList[4].prority
+                                  .toString(),
                               context: context,
                             ),
                             CustomTableRowForTwentyScreen(
-                              title: hematologyModelList[5].text,
-                              isEnable: hematologyModelList[5].isSelected,
-                              priority:
-                                  hematologyModelList[5].prority.toString(),
+                              title: widget.hematologyModelList[5].text,
+                              isEnable:
+                                  widget.hematologyModelList[5].isSelected,
+                              priority: widget.hematologyModelList[5].prority
+                                  .toString(),
                               context: context,
                             ),
                           ],
@@ -157,22 +177,25 @@ class TwentyScreen extends StatelessWidget {
                       table: Column(
                         children: [
                           CustomTableRowForTwentyScreen(
-                              title: coagulationModelList[0].text,
-                              isEnable: coagulationModelList[0].isSelected,
-                              priority:
-                                  coagulationModelList[0].prority.toString(),
+                              title: widget.coagulationModelList[0].text,
+                              isEnable:
+                                  widget.coagulationModelList[0].isSelected,
+                              priority: widget.coagulationModelList[0].prority
+                                  .toString(),
                               context: context),
                           CustomTableRowForTwentyScreen(
-                              title: coagulationModelList[1].text,
-                              isEnable: coagulationModelList[1].isSelected,
-                              priority:
-                                  coagulationModelList[1].prority.toString(),
+                              title: widget.coagulationModelList[1].text,
+                              isEnable:
+                                  widget.coagulationModelList[1].isSelected,
+                              priority: widget.coagulationModelList[1].prority
+                                  .toString(),
                               context: context),
                           CustomTableRowForTwentyScreen(
-                              title: coagulationModelList[2].text,
-                              isEnable: coagulationModelList[2].isSelected,
-                              priority:
-                                  coagulationModelList[2].prority.toString(),
+                              title: widget.coagulationModelList[2].text,
+                              isEnable:
+                                  widget.coagulationModelList[2].isSelected,
+                              priority: widget.coagulationModelList[2].prority
+                                  .toString(),
                               context: context),
                         ],
                       ),
@@ -183,43 +206,47 @@ class TwentyScreen extends StatelessWidget {
                       table: Column(
                         children: [
                           CustomTableRowForTwentyScreen(
-                              title: chemistryModelList[0].text,
-                              isEnable: chemistryModelList[0].isSelected,
-                              priority:
-                                  chemistryModelList[0].prority.toString(),
+                              title: widget.chemistryModelList[0].text,
+                              isEnable: widget.chemistryModelList[0].isSelected,
+                              priority: widget.chemistryModelList[0].prority
+                                  .toString(),
                               context: context),
                           CustomTableRowForTwentyScreen(
-                              title: chemistryModelList[1].text,
-                              isEnable: chemistryModelList[1].isSelected,
-                              priority:
-                                  chemistryModelList[1].prority.toString(),
+                              title: widget.chemistryModelList[1].text,
+                              isEnable: widget.chemistryModelList[1].isSelected,
+                              priority: widget.chemistryModelList[1].prority
+                                  .toString(),
                               context: context),
                           CustomTableRowForTwentyScreen(
-                              title: chemistryModelList[2].text,
-                              isEnable: chemistryModelList[2].isSelected,
-                              priority:
-                                  chemistryModelList[2].prority.toString(),
+                              title: widget.chemistryModelList[2].text,
+                              isEnable: widget.chemistryModelList[2].isSelected,
+                              priority: widget.chemistryModelList[2].prority
+                                  .toString(),
                               context: context),
                         ],
                       ),
                     ),
                     const SizedBox(height: 10),
-                    if (typeOfEcho != null)
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Type of Echo',
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                          Text(
-                            '$typeOfEcho',
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 20),
-                          ),
-                        ],
+                    if (widget.typeOfEcho != null)
+                      Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Type of Echo',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            ),
+                            Text(
+                              '${widget.typeOfEcho}',
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 20),
+                            ),
+                          ],
+                        ),
                       ),
-                    if (fileImage != null)
+                    if (widget.fileImage != null)
                       Container(
                         decoration: BoxDecoration(
                             color: AppColor.continerColor,
@@ -228,7 +255,7 @@ class TwentyScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             Image.file(
-                              fileImage!,
+                              File(widget.fileImage!),
                               fit: BoxFit.fill,
                               // height: 200,
                               width: double.infinity,

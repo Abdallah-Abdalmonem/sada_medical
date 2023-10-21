@@ -1,10 +1,8 @@
-import 'dart:io';
-
-import 'package:application/widgets/passing.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/constant/appcolor.dart';
 import '../../constants/constant/image_constant.dart';
+import '../../reusable_components/cache_helper.dart';
 import 'twenty_screen/twenty_screen.dart';
 
 class TasksTabBody extends StatefulWidget {
@@ -15,6 +13,14 @@ class TasksTabBody extends StatefulWidget {
 }
 
 class _TasksTabBodyState extends State<TasksTabBody> {
+  @override
+  void initState() {
+    setState(() {
+      CacheHelper.getList();
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,48 +69,71 @@ class _TasksTabBodyState extends State<TasksTabBody> {
                       color: Colors.transparent,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        child: Row(
                           children: [
-                            Row(
-                              children: [
-                                Image.asset(
-                                  AppImages.imgPerson,
-                                  height: 20,
-                                  width: 20,
-                                ),
-                                const SizedBox(width: 10),
-                                Expanded(
-                                  child: Text(
-                                    'Name: ${patientDataList[index].name}',
-                                    style: const TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: 30,
+                                    child: Row(
+                                      children: [
+                                        Image.asset(
+                                          AppImages.imgPerson,
+                                          height: 20,
+                                          width: 20,
+                                        ),
+                                        const SizedBox(width: 10),
+                                        Expanded(
+                                          child: Text(
+                                            'Name: ${patientDataList[index].name}',
+                                            style: const TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Image.asset(
-                                  AppImages.imgDate,
-                                  width: 20,
-                                  height: 20,
-                                ),
-                                const SizedBox(width: 10),
-                                Text(
-                                  'Date: ${patientDataList[index].date?.substring(0, 10)}',
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                                  SizedBox(
+                                    height: 30,
+                                    child: Row(
+                                      children: [
+                                        Image.asset(
+                                          AppImages.imgDate,
+                                          width: 20,
+                                          height: 20,
+                                        ),
+                                        const SizedBox(width: 10),
+                                        Text(
+                                          'Date: ${patientDataList[index].date?.substring(0, 10)}',
+                                          style: const TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
+                            IconButton(
+                                onPressed: () async {
+                                  await patientDataList.removeAt(index);
+                                  CacheHelper.setList();
+                                  // CacheHelper.getList();
+                                  setState(() {});
+                                },
+                                icon: const Icon(
+                                  Icons.delete,
+                                  color: Colors.red,
+                                )),
                           ],
                         ),
                       ),

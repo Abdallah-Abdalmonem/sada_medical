@@ -1,8 +1,12 @@
+import 'package:application/reusable_components/cache_helper.dart';
 import 'package:flutter/material.dart';
 
 import 'pages/main_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  CacheHelper.init();
+
   runApp(const MyApp());
 }
 
