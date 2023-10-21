@@ -3,6 +3,8 @@ import 'package:application/constants/constant/constants.dart';
 import 'package:application/reusable_components/custom_text_form_field.dart';
 import 'package:application/widgets/post_item.dart';
 
+import '../../constants/constant/appcolor.dart';
+
 class HomeTabBody extends StatelessWidget {
   const HomeTabBody({super.key});
   @override
@@ -14,7 +16,7 @@ class HomeTabBody extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                primaryColor,
+                AppColor.primaryColor,
                 Color(0xffe5f7f8),
               ]),
         ),

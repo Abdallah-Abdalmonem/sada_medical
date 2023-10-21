@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:application/constants/constant/constants.dart';
 
+import '../constants/constant/appcolor.dart';
 import '../reusable_components/custom_text_form_field.dart';
 
 class PostItem extends StatelessWidget {
@@ -15,7 +16,7 @@ class PostItem extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: postColor,
+              color: AppColor.postColor,
             ),
             width: double.infinity,
             height: 128,

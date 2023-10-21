@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:application/widgets/patient_info.dart';
 
+import '../constants/constant/appcolor.dart';
 import '../constants/constant/constants.dart';
 
 class Room extends StatelessWidget {
@@ -13,7 +14,7 @@ class Room extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: primaryColor,
+        backgroundColor: AppColor.primaryColor,
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -21,7 +22,7 @@ class Room extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                primaryColor,
+                AppColor.primaryColor,
                 Color(0xffe5f7f8),
               ]),
         ),
@@ -47,7 +48,7 @@ class Room extends StatelessWidget {
                         height: 128,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
-                          color: primaryColor,
+                          color: AppColor.primaryColor,
                         ),
                         child: const Center(
                           child: Row(

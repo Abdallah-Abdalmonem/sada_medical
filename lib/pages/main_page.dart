@@ -4,6 +4,7 @@ import 'package:application/widgets/bodies/home_tab_body.dart';
 import 'package:application/widgets/bodies/patient_tab_body.dart';
 import 'package:application/widgets/passing.dart';
 
+import '../constants/constant/appcolor.dart';
 import '../widgets/bodies/notifications_tab_body.dart';
 import '../widgets/bodies/tasks_tab_body.dart';
 
@@ -16,7 +17,7 @@ class HomePage extends StatelessWidget {
       length: 5,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: primaryColor,
+          backgroundColor: AppColor.primaryColor,
           elevation: 0,
           leadingWidth: 150,
           leading: Row(
@@ -34,7 +35,7 @@ class HomePage extends StatelessWidget {
                   icon: const Icon(Icons.menu),
                   onPressed: () {
                     showMenu(
-                      color: primaryColor.withOpacity(.85),
+                      color: AppColor.primaryColor.withOpacity(.85),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8)),
                       context: context,

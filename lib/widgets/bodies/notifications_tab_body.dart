@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:application/widgets/Notification_item.dart';
 
+import '../../constants/constant/appcolor.dart';
 import '../../constants/constant/constants.dart';
 
 class NotificationsTabBody extends StatelessWidget {
@@ -11,7 +12,7 @@ class NotificationsTabBody extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: primaryColor,
+        backgroundColor: AppColor.primaryColor,
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -19,7 +20,7 @@ class NotificationsTabBody extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                primaryColor,
+                AppColor.primaryColor,
                 Color(0xffe5f7f8),
               ]),
         ),

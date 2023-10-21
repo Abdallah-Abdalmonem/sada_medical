@@ -5,125 +5,33 @@ import 'package:flutter/material.dart';
 
 import '../../../constants/constant/appcolor.dart';
 import '../../../constants/constant/image_constant.dart';
-import '../../../models/chemistry_model.dart';
-import '../../../models/coagulation.dart.dart';
 import '../../../models/row_model.dart';
 import '../../custom_widgets/custom_table_continer.dart';
 import '../../custom_widgets/custom_table_row.dart';
 
 class TwentyScreen extends StatelessWidget {
-  TextEditingController nameController = TextEditingController();
-
-  TextEditingController dateController = TextEditingController();
-
-  TextEditingController typeOfEchoController = TextEditingController();
-
   File? fileImage;
   String name;
   String date;
-  CoagulationModel coagulationModel;
-  ChemistryModel chemistryModel;
-  List<CustomModel> list;
+  String? typeOfEcho;
+  List<CustomModel> coagulationModelList;
+  List<CustomModel> chemistryModelList;
+  List<CustomModel> hematologyModelList;
 
   TwentyScreen({
     Key? key,
     this.fileImage,
     required this.name,
     required this.date,
-    required this.chemistryModel,
-    required this.coagulationModel,
-    required this.list,
+    required this.typeOfEcho,
+    required this.chemistryModelList,
+    required this.coagulationModelList,
+    required this.hematologyModelList,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size mediaQuery = MediaQuery.of(context).size;
-
-    List hematologyList = [
-      CustomTableRowForTwentyScreen(
-        title: list[0].text,
-        isEnable: list[0].isSelected,
-        priority: list[0].prority.toString(),
-        context: context,
-      ),
-      CustomTableRowForTwentyScreen(
-        title: list[1].text,
-        isEnable: list[1].isSelected,
-        priority: list[1].prority.toString(),
-        context: context,
-      ),
-      CustomTableRowForTwentyScreen(
-        title: list[2].text,
-        isEnable: list[2].isSelected,
-        priority: list[2].prority.toString(),
-        context: context,
-      ),
-      CustomTableRowForTwentyScreen(
-        title: list[3].text,
-        isEnable: list[3].isSelected,
-        priority: list[3].prority.toString(),
-        context: context,
-      ),
-      CustomTableRowForTwentyScreen(
-        title: list[4].text,
-        isEnable: list[4].isSelected,
-        priority: list[4].prority.toString(),
-        context: context,
-      ),
-      CustomTableRowForTwentyScreen(
-        title: list[5].text,
-        isEnable: list[5].isSelected,
-        priority: list[5].prority.toString(),
-        context: context,
-      ),
-    ];
-
-    List coagulationList = [
-      CustomTableRow(
-          title: 'RBS',
-          onTap: () {},
-          isEnable: chemistryModel.RBSEnable,
-          controller: nameController,
-          context: context),
-      CustomTableRow(
-          title: 'Cholesterol',
-          onTap: () {},
-          isEnable: chemistryModel.CholesterolISEnable,
-          controller: nameController,
-          context: context),
-      CustomTableRow(
-          title: 'TGs',
-          onTap: () {},
-          isEnable: chemistryModel.TGsISEnable,
-          controller: nameController,
-          context: context),
-      CustomTableRow(
-          title: 'CK',
-          onTap: () {},
-          isEnable: chemistryModel.CKIsEnable,
-          controller: nameController,
-          context: context),
-    ];
-    List chemistryList = [
-      CustomTableRow(
-          title: 'PC',
-          onTap: () {},
-          isEnable: coagulationModel.PCIsEnable,
-          controller: nameController,
-          context: context),
-      CustomTableRow(
-          title: 'PT',
-          onTap: () {},
-          isEnable: coagulationModel.PTIsEnable,
-          controller: nameController,
-          context: context),
-      CustomTableRow(
-          title: 'LNR',
-          onTap: () {},
-          isEnable: coagulationModel.LNRIsEnable,
-          controller: nameController,
-          context: context),
-    ];
 
     return Scaffold(
       body: SafeArea(
@@ -177,9 +85,11 @@ class TwentyScreen extends StatelessWidget {
                             ),
                             const SizedBox(width: 10),
                             Expanded(
-                              child: Text(date.substring(0, 10),
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.white)),
+                              child: Text(
+                                date.substring(0, 10),
+                                style: const TextStyle(
+                                    fontSize: 18, color: Colors.white),
+                              ),
                             ),
                           ],
                         ),
@@ -194,41 +104,121 @@ class TwentyScreen extends StatelessWidget {
                       ],
                     ),
                     CustomTableContiner(
-                      categoryName: 'Hematology',
-                      table: ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: hematologyList.length,
-                        itemBuilder: (context, index) => hematologyList[index],
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    CustomTableContiner(
-                        categoryName: 'Chemistry',
-                        table: ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: chemistryList.length,
-                          itemBuilder: (context, index) => chemistryList[index],
+                        categoryName: 'Hematology',
+                        table: Column(
+                          children: [
+                            CustomTableRowForTwentyScreen(
+                              title: hematologyModelList[0].text,
+                              isEnable: hematologyModelList[0].isSelected,
+                              priority:
+                                  hematologyModelList[0].prority.toString(),
+                              context: context,
+                            ),
+                            CustomTableRowForTwentyScreen(
+                              title: hematologyModelList[1].text,
+                              isEnable: hematologyModelList[1].isSelected,
+                              priority:
+                                  hematologyModelList[1].prority.toString(),
+                              context: context,
+                            ),
+                            CustomTableRowForTwentyScreen(
+                              title: hematologyModelList[2].text,
+                              isEnable: hematologyModelList[2].isSelected,
+                              priority:
+                                  hematologyModelList[2].prority.toString(),
+                              context: context,
+                            ),
+                            CustomTableRowForTwentyScreen(
+                              title: hematologyModelList[3].text,
+                              isEnable: hematologyModelList[3].isSelected,
+                              priority:
+                                  hematologyModelList[3].prority.toString(),
+                              context: context,
+                            ),
+                            CustomTableRowForTwentyScreen(
+                              title: hematologyModelList[4].text,
+                              isEnable: hematologyModelList[4].isSelected,
+                              priority:
+                                  hematologyModelList[4].prority.toString(),
+                              context: context,
+                            ),
+                            CustomTableRowForTwentyScreen(
+                              title: hematologyModelList[5].text,
+                              isEnable: hematologyModelList[5].isSelected,
+                              priority:
+                                  hematologyModelList[5].prority.toString(),
+                              context: context,
+                            ),
+                          ],
                         )),
                     const SizedBox(height: 20),
                     CustomTableContiner(
                       categoryName: 'Coagulation',
-                      table: ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: coagulationList.length,
-                        itemBuilder: (context, index) => coagulationList[index],
+                      table: Column(
+                        children: [
+                          CustomTableRowForTwentyScreen(
+                              title: coagulationModelList[0].text,
+                              isEnable: coagulationModelList[0].isSelected,
+                              priority:
+                                  coagulationModelList[0].prority.toString(),
+                              context: context),
+                          CustomTableRowForTwentyScreen(
+                              title: coagulationModelList[1].text,
+                              isEnable: coagulationModelList[1].isSelected,
+                              priority:
+                                  coagulationModelList[1].prority.toString(),
+                              context: context),
+                          CustomTableRowForTwentyScreen(
+                              title: coagulationModelList[2].text,
+                              isEnable: coagulationModelList[2].isSelected,
+                              priority:
+                                  coagulationModelList[2].prority.toString(),
+                              context: context),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    CustomTableContiner(
+                      categoryName: 'Chemistry',
+                      table: Column(
+                        children: [
+                          CustomTableRowForTwentyScreen(
+                              title: chemistryModelList[0].text,
+                              isEnable: chemistryModelList[0].isSelected,
+                              priority:
+                                  chemistryModelList[0].prority.toString(),
+                              context: context),
+                          CustomTableRowForTwentyScreen(
+                              title: chemistryModelList[1].text,
+                              isEnable: chemistryModelList[1].isSelected,
+                              priority:
+                                  chemistryModelList[1].prority.toString(),
+                              context: context),
+                          CustomTableRowForTwentyScreen(
+                              title: chemistryModelList[2].text,
+                              isEnable: chemistryModelList[2].isSelected,
+                              priority:
+                                  chemistryModelList[2].prority.toString(),
+                              context: context),
+                        ],
                       ),
                     ),
                     const SizedBox(height: 10),
-                    const Align(
-                      alignment: AlignmentDirectional.centerStart,
-                      child: Text(
-                        'Type of Echo',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
+                    if (typeOfEcho != null)
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Type of Echo',
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                          Text(
+                            '$typeOfEcho',
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 20),
+                          ),
+                        ],
                       ),
-                    ),
                     if (fileImage != null)
                       Container(
                         decoration: BoxDecoration(

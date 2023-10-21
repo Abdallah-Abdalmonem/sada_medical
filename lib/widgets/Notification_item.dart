@@ -3,13 +3,15 @@
 import 'package:flutter/material.dart';
 import 'package:application/constants/constant/constants.dart';
 
+import '../constants/constant/appcolor.dart';
+
 class NotificationItem extends StatelessWidget {
   const NotificationItem({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: primaryColor,
+      color: AppColor.primaryColor,
       width: double.infinity,
       child: Padding(
         padding: const EdgeInsets.only(left: 16),

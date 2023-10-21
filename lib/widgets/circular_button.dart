@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../constants/constant/appcolor.dart';
 import '../constants/constant/constants.dart';
 
 class CircularButton extends StatelessWidget {
@@ -14,7 +15,7 @@ class CircularButton extends StatelessWidget {
       width: 75,
       height: 75,
       decoration: BoxDecoration(
-        color: primaryColor,
+        color: AppColor.primaryColor,
         borderRadius: BorderRadius.circular(40),
       ),
       child: Center(

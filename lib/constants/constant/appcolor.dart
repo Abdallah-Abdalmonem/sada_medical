@@ -9,7 +9,9 @@ class AppColor {
   static const Color teal = Color(0xffffffff);
   static const Color continerColor = Color(0xff85C2CB);
 
-  static MaterialColor primaryColor = MaterialColor(0xff57c4b2, color);
+  static const Color primaryColor = Color(0xff50B0B7);
+  static const Color postColor = Color(0xBF83C0CB);
+  static const Color secondColor = Color(0x59FFFFFF);
 }
 
 Map<int, Color> color = {

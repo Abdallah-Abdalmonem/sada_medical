@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../constants/constant/appcolor.dart';
 import '../constants/constant/constants.dart';
 import 'circular_button.dart';
 
@@ -11,7 +12,7 @@ class PatientInfo extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: primaryColor,
+        backgroundColor: AppColor.primaryColor,
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -19,7 +20,7 @@ class PatientInfo extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                primaryColor,
+                AppColor.primaryColor,
                 Color(0xffe5f7f8),
               ]),
         ),
@@ -32,7 +33,7 @@ class PatientInfo extends StatelessWidget {
                 height: 227,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
-                  color: primaryColor,
+                  color: AppColor.primaryColor,
                 ),
                 child: const Row(
                   children: [
@@ -77,7 +78,7 @@ class PatientInfo extends StatelessWidget {
                   GestureDetector(
                       onTap: () {
                         showModalBottomSheet(
-                          backgroundColor: primaryColor,
+                          backgroundColor: AppColor.primaryColor,
                           isScrollControlled: true,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16)),
@@ -97,7 +98,7 @@ class PatientInfo extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       showModalBottomSheet(
-                        backgroundColor: primaryColor,
+                        backgroundColor: AppColor.primaryColor,
                         isScrollControlled: true,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
@@ -127,7 +128,7 @@ class PatientInfo extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       showModalBottomSheet(
-                        backgroundColor: primaryColor,
+                        backgroundColor: AppColor.primaryColor,
                         isScrollControlled: true,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),

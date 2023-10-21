@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/constant/appcolor.dart';
 import '../../constants/constant/constants.dart';
 import '../Room.dart';
 
@@ -14,7 +15,7 @@ class PatientTabBody extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                primaryColor,
+                AppColor.primaryColor,
                 Color(0xffe5f7f8),
               ]),
         ),
@@ -34,7 +35,7 @@ class PatientTabBody extends StatelessWidget {
                   height: 100,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: primaryColor,
+                    color: AppColor.primaryColor,
                   ),
                   child: const Center(
                       child: Text(
@@ -51,7 +52,7 @@ class PatientTabBody extends StatelessWidget {
                 height: 100,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
-                  color: primaryColor,
+                  color: AppColor.primaryColor,
                 ),
                 child: const Center(
                     child: Text(
@@ -67,7 +68,7 @@ class PatientTabBody extends StatelessWidget {
                 height: 100,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
-                  color: primaryColor,
+                  color: AppColor.primaryColor,
                 ),
                 child: const Center(
                     child: Text(

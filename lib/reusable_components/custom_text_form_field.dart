@@ -1,5 +1,5 @@
+import 'package:application/constants/constant/appcolor.dart';
 import 'package:flutter/material.dart';
-import 'package:application/constants/constant/constants.dart';
 
 class CustomTextField extends StatelessWidget {
   final String? hintText;
@@ -24,7 +24,7 @@ class CustomTextField extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
-        color: secondColor,
+        color: AppColor.secondColor,
       ),
       child: TextFormField(
         keyboardType: keyboardType,
@@ -48,7 +48,7 @@ class CustomTextField extends StatelessWidget {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
             borderSide: const BorderSide(
-              color: postColor,
+              color: AppColor.postColor,
             ),
           ),
         ),
